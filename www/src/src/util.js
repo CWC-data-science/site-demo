@@ -3,6 +3,20 @@ export function isDebug () {
   return isEnabled;
 }
 
+
+export function isDev () {
+  // local hosts are dev.
+  const localHosts = ['localhost', '127.0.0.1', '0.0.0.0'];
+  // const isEnabled = window.location.hostname.includes('localhost');
+  let isEnabled = false;
+  localHosts.forEach((host) => {
+    if (window.location.hostname.includes(host)) {
+      isEnabled = true;
+    }
+  });
+  return isEnabled;
+}
+
 export function mapValues (t, x0, x1, y0, y1) {
   return ((t - x0) * (y1 - y0)) / (x1 - x0) + y0;
 }

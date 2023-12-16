@@ -16,9 +16,13 @@ cd "$script_dir" || {
     exit 1
 }
 
+# Check if activate.sh exists
+if [ ! -f "./activate.sh" ]; then
+    echo "Error: 'activate.sh' not found in the current directory. Have you installed the project? Try running './install'."
+fi
+
 cd www
 
-# Run npm build and check if it fails
 if ! npm run build; then
     echo "Error: npm run build failed. Have you installed the dependencies? Try running './install'."
     exit 1

@@ -1,8 +1,10 @@
 /* eslint-disable func-names */
 
+// Splash screen always comes up during developement.
+
 import html from './index.frag.html';
 import './index.css';
-import { isDebug, isMobile } from '../../util';
+import { isDev, isMobile } from '../../util';
 
 const LOCAL_STORAGE_NAME = 'splashActivatedInfo';
 
@@ -34,6 +36,7 @@ export function splashActivatedThisSession () {
   return !!getData().activatedThisSession;
 }
 
+// Splash screen always comes up during developement.
 export async function initSplash () {
   const data = getData();
   if (data === null) {
@@ -41,7 +44,7 @@ export async function initSplash () {
   }
 
   const splashActivatedDate = getData().date;
-  if (splashActivatedDate && !isDebug()) {
+  if (splashActivatedDate && !isDev()) {
     const maxHours = 24;
     const dateDiff = new Date().getTime() - splashActivatedDate;
     const hoursDiff = dateDiff / 1000 / 60 / 60;
@@ -102,10 +105,4 @@ export async function initSplash () {
     finalize();
   }, 4200);
 
-  // --header-body-overflow: hidden
-  // set the css value
-  // document.body.style.setProperty('--header-body-overflow', 'hidden');
-
-  // on loaded.
-  // document.querySelector(".background-container").style.opacity = '1';
 }
