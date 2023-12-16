@@ -29,5 +29,9 @@ if ! docker info > /dev/null 2>&1; then
     exit 1
 fi
 docker-compose down --rmi all
-$PYTHON_CMD -c "import webbrowser; webbrowser.open('http://localhost:$port')" &
+echo -e "\n##########################\n# Launching a web browser to http://localhost:$port in 20 seconds"
+echo -e "# If you don't see a web browser, please open one and navigate to http://localhost:$port\n##########################\n"
+# finish
+echo "Starting docker-compose in $(pwd)"
+(sleep 20; $PYTHON_CMD -c "import webbrowser; webbrowser.open('http://localhost:$port')") &
 docker-compose up
