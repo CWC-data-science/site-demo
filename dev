@@ -3,13 +3,9 @@
 # Stop on the first error
 set -e
 
-# Change to the script's directory
-script_path="${BASH_SOURCE[0]}"
-while [ -h "$script_path" ]; do
-  script_path="$(readlink "$script_path")"
-done
-script_dir="${script_path%/*}"
-cd "$script_dir" || {
+# Attempt to change directory to the directory containing the script
+script_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+cd "$script_dir" || { 
     echo "Error: Failed to change to the script's directory. Please check the path."
     exit 1
 }

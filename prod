@@ -9,12 +9,12 @@ cleanup() {
 # Trap EXIT and SIGINT (Ctrl-C) to call the cleanup function
 trap cleanup EXIT SIGINT
 
-# Change to the script's directory
-if command -v dirname >/dev/null 2>&1; then
-    cd "$(dirname "$0")"
-else
-    cd "$(cd "$(echo "${BASH_SOURCE[0]}" | sed -e 's,\\,/,g')" && pwd)"
-fi
+# Attempt to change directory to the directory containing the script
+script_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+cd "$script_dir" || { 
+    echo "Error: Failed to change to the script's directory. Please check the path."
+    exit 1
+}
 
 cd www
 
