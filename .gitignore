@@ -45,3 +45,4 @@ www/dist
 www/node_modules
 www/**/*.gz
 .aider*
+activate.sh
