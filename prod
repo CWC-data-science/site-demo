@@ -1,0 +1,34 @@
+#! /bin/bash
+
+# Function to clean up background processes
+cleanup() {
+    echo "Cleaning up background processes..."
+    kill $(jobs -p) 2>/dev/null
+}
+
+# Trap EXIT and SIGINT (Ctrl-C) to call the cleanup function
+trap cleanup EXIT SIGINT
+
+# Change to the script's directory
+if command -v dirname >/dev/null 2>&1; then
+    cd "$(dirname "$0")"
+else
+    cd "$(cd "$(echo "${BASH_SOURCE[0]}" | sed -e 's,\\,/,g')" && pwd)"
+fi
+
+cd www
+
+# Run npm build and check if it fails
+if ! npm run build; then
+    echo "Error: npm run build failed. Have you installed the dependencies? Try running './install'."
+    exit 1
+fi
+
+cd ..
+
+# Start background processes
+uvicorn --host 0.0.0.0 --port 80 --workers 8 --forwarded-allow-ips=* feedthewatchdogs.app:app &
+python -m feedthewatchdogs.background_tasks &
+
+# Wait for all background processes to finish
+wait

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "feedthewatchdogs"
+description = "Cross platform(ish) productivity commands written in python."
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = [""]
+license = { text = "BSD 3-Clause License" }
+classifiers = ["Programming Language :: Python :: 3"]
+dynamic = ["dependencies"]
+version = "1.0.0"
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.ruff]
+line-length = 9999
+
+[tool.flake8]
+ignore = ["E501"]
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = "line-too-long,missing-class-docstring,too-few-public-methods,missing-function-docstring,missing-module-docstring,broad-except"
+
+[tool.mypy]
+ignore_missing_imports = true

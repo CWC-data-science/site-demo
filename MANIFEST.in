@@ -1,0 +1,5 @@
+include pyproject.toml
+include src/feedthewatchdogs/assets/bing.jpeg
+include src/feedthewatchdogs/assets/google.jpeg
+include src/feedthewatchdogs/assets/styles.css
+include src/feedthewatchdogs/assets/yahoo.png

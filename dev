@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Stop on the first error
+set -e
+
+# Change to the script's directory
+script_path="${BASH_SOURCE[0]}"
+while [ -h "$script_path" ]; do
+  script_path="$(readlink "$script_path")"
+done
+script_dir="${script_path%/*}"
+cd "$script_dir" || {
+    echo "Error: Failed to change to the script's directory. Please check the path."
+    exit 1
+}
+
+# Check if activate.sh exists
+if [ ! -f "./activate.sh" ]; then
+    echo "Error: 'activate.sh' not found in the current directory. Have you installed the project? Try running './install'."
+    exit 1
+fi
+
+# Activate the environment
+. ./activate.sh
+
+# Run the Python development script
+python run_dev.py || {
+    echo "Error: Python script 'run_dev.py' failed to run. Have you installed the dependencies? Try running './install'."
+    exit 1
+}
