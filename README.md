@@ -14,35 +14,34 @@ Github lints / unit tests with badges, 404 checker.
 
 # Recommended Workflow
 
-  * Background worker performs work
-  * FastAPI workers move as fast as possible
-  * Recommended ORM is sqlalchemy (installed)
-
+- Background worker performs work
+- FastAPI workers move as fast as possible
+- Recommended ORM is sqlalchemy (installed)
 
 Developer experience:
-  * Designed for VSCode, and github co-pilot.
-  * Windows must have git-bash installed
 
-
+- Designed for VSCode, and github co-pilot.
+- Windows must have git-bash installed
 
 # Directories:
-  * `www/` - Web front end (webpack)
-  * `src/` - Python source (fastapi)
+
+- `www/` - Web front end (webpack)
+- `src/` - Python source (fastapi)
 
 # Commands
 
 ## Developement
 
-  * `./install` - Installs the product
-  * `./activate.sh` - Activates the environment
-  * `./dev` - Runs the server with hot front end reloading
-  * `./lint` - Runs linting on all source code
+- `./install` - Installs the product
+- `./activate.sh` - Activates the environment
+- `./dev` - Runs the server with hot front end reloading
+- `./lint` - Runs linting on all source code
 
 ## Production
 
-  * `./run_docker` - Run this if you have docker, the p
-  * `./prod`- Compiles the website into a `dist` folder and then runs it
+- `./run_docker` - Run this if you have docker, the p
+- `./prod`- Compiles the website into a `dist` folder and then runs it
 
 # Recommended deployment
 
-  * Use github login to get access to Render.com's free tier.
+- Use github login to get access to Render.com's free tier.
