@@ -58,14 +58,15 @@ module.exports = {
         include: /node_modules/,
         use: ['style-loader', 'css-loader']
       },
-      /*
-          {
-          test: /\.(jpg|png)$/,
-          use: {
-            loader: 'url-loader',
-          },
-          },
-          */
+      {
+        test: /\.(scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ],
+        include: /node_modules/,
+      },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
